@@ -2,9 +2,9 @@
 
 Foundation for standardized quantum education access and prototyping.
 
-**Philosophy**: pure where possible · honest limitations · test-first
+Initial release with cross-framework benchmarks, 10-Hamiltonian database, 20 educational notebooks, and interactive web course. All smoke tests passing."
 
-Built against **LQE Ecosystem Build Plan v1.0**. Does **not** modify the LQE engine.
+**Philosophy**: pure where possible · honest limitations · test-first
 
 ## Status (v1.0 foundation)
 
