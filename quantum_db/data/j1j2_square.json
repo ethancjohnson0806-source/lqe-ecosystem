@@ -1,0 +1,25 @@
+{
+  "id": "j1j2_square",
+  "name": "J1-J2 Model (4 sites)",
+  "description": "4-site frustrated J1-J2 Heisenberg (educational)",
+  "type": "spin",
+  "n_qubits": 4,
+  "parameters": {"J1": 1.0, "J2": 0.5},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": 1.0, "pauli": "XXII"},
+      {"coefficient": 1.0, "pauli": "YYII"},
+      {"coefficient": 1.0, "pauli": "ZZII"},
+      {"coefficient": 1.0, "pauli": "IXXI"},
+      {"coefficient": 1.0, "pauli": "IYYI"},
+      {"coefficient": 1.0, "pauli": "IZZI"},
+      {"coefficient": 0.5, "pauli": "XIXI"},
+      {"coefficient": 0.5, "pauli": "YIYI"},
+      {"coefficient": 0.5, "pauli": "ZIZI"}
+    ]
+  },
+  "exact": {"ground_state_energy": -6.000000000000002, "degeneracy": 1},
+  "metadata": {"source": "educational", "verified_by": "exact_diagonalization", "date_added": "2026-09-06"},
+  "tags": ["j1j2", "frustrated", "spin", "benchmark"]
+}

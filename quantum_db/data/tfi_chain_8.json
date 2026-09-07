@@ -1,0 +1,31 @@
+{
+  "id": "tfi_chain_8",
+  "name": "Transverse-Field Ising Chain (8 qubits)",
+  "description": "8-qubit TFI chain for MPS/DMRG benchmarks, J=1, h=0.5",
+  "type": "spin",
+  "n_qubits": 8,
+  "parameters": {"J": 1.0, "h": 0.5, "boundary": "open"},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": -1.0, "pauli": "ZZIIIIII"},
+      {"coefficient": -1.0, "pauli": "IZZIIIII"},
+      {"coefficient": -1.0, "pauli": "IIZZIIII"},
+      {"coefficient": -1.0, "pauli": "IIIZZIII"},
+      {"coefficient": -1.0, "pauli": "IIIIZZII"},
+      {"coefficient": -1.0, "pauli": "IIIIIZZI"},
+      {"coefficient": -1.0, "pauli": "IIIIIIZZ"},
+      {"coefficient": -0.5, "pauli": "XIIIIIII"},
+      {"coefficient": -0.5, "pauli": "IXIIIIII"},
+      {"coefficient": -0.5, "pauli": "IIXIIIII"},
+      {"coefficient": -0.5, "pauli": "IIIXIIII"},
+      {"coefficient": -0.5, "pauli": "IIIIXIII"},
+      {"coefficient": -0.5, "pauli": "IIIIIXII"},
+      {"coefficient": -0.5, "pauli": "IIIIIIXI"},
+      {"coefficient": -0.5, "pauli": "IIIIIIIX"}
+    ]
+  },
+  "exact": {"ground_state_energy": -7.64059255359006, "degeneracy": 1},
+  "metadata": {"source": "analytical", "verified_by": "exact_diagonalization", "date_added": "2026-09-06"},
+  "tags": ["ising", "1d", "mps", "dmrg", "benchmark"]
+}
