@@ -1,0 +1,21 @@
+{
+  "id": "h2_molecule",
+  "name": "H2 Molecule (STO-3G, 2 qubits effective)",
+  "description": "Minimal H2 Hamiltonian (educational parity mapping, 2 qubits)",
+  "type": "fermionic",
+  "n_qubits": 2,
+  "parameters": {"basis": "sto-3g", "bond_length": 0.74},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": -1.05, "pauli": "II"},
+      {"coefficient": 0.39, "pauli": "ZI"},
+      {"coefficient": -0.39, "pauli": "IZ"},
+      {"coefficient": -0.01, "pauli": "ZZ"},
+      {"coefficient": 0.18, "pauli": "XX"}
+    ]
+  },
+  "exact": {"ground_state_energy": -1.137, "degeneracy": 1},
+  "metadata": {"source": "literature", "verified_by": "exact_diagonalization", "date_added": "2026-09-06"},
+  "tags": ["chemistry", "molecule", "h2", "benchmark"]
+}

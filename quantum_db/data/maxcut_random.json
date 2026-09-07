@@ -1,0 +1,20 @@
+{
+  "id": "maxcut_random",
+  "name": "MaxCut Triangle (3 nodes)",
+  "description": "3-node complete graph MaxCut (triangle)",
+  "type": "maxcut",
+  "n_qubits": 3,
+  "parameters": {"edges": [[0,1],[1,2],[2,0]]},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": -0.5, "pauli": "ZZI"},
+      {"coefficient": -0.5, "pauli": "IZZ"},
+      {"coefficient": -0.5, "pauli": "ZIZ"},
+      {"coefficient": 1.5, "pauli": "III"}
+    ]
+  },
+  "exact": {"ground_state_energy": -2.0, "degeneracy": 2},
+  "metadata": {"source": "combinatorial", "verified_by": "exact_diagonalization", "date_added": "2026-09-06"},
+  "tags": ["maxcut", "qaoa", "combinatorial", "benchmark"]
+}
