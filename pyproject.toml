@@ -3,7 +3,7 @@ name = "lqe-ecosystem"
 version = "1.0.0"
 description = "LQE Ecosystem — standardized quantum education access and prototyping"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 license = { text = "MIT" }
 authors = [{ name = "LQE Ecosystem" }]
 dependencies = [
