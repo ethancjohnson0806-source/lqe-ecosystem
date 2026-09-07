@@ -1,0 +1,10 @@
+{
+  "id": "lesson_10",
+  "title": "Quantum Chemistry (H2)",
+  "duration_minutes": 12,
+  "sections": [
+    {"type": "text", "content": "Electronic structure maps to qubit Hamiltonians. VQE can approximate molecular ground-state energies."},
+    {"type": "code", "description": "VQE on educational H2 Hamiltonian", "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom quantum_db.api import QuantumDB\nfrom legitimate_quantum_engine.solvers.vqe_ground import VQE\nimport numpy as np\ndb = QuantumDB()\nH = db.to_matrix('h2_molecule')\nexact = float(np.min(np.real(np.linalg.eigvalsh(H))))\nout = VQE(2, H, num_layers=2, max_iterations=80).solve(verbose=False)\nprint(f'Exact: {exact:.6f}  VQE: {out[\"energy\"]:.6f}  status={out[\"status\"]}')"},
+    {"type": "quiz", "question": "Molecular Hamiltonians are mapped to qubits via?", "options": ["Fourier transform", "Fermion-to-qubit encodings", "Grover oracle", "QAOA mixer"], "correct": 1}
+  ]
+}

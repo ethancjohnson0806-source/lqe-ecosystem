@@ -1,0 +1,10 @@
+{
+  "id": "lesson_07",
+  "title": "Quantum Approximate Optimization",
+  "duration_minutes": 12,
+  "sections": [
+    {"type": "text", "content": "QAOA is a hybrid variational algorithm for combinatorial optimization. It alternates cost and mixer unitaries. MaxCut is the standard demo."},
+    {"type": "code", "description": "QAOA MaxCut on a triangle", "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.solvers.qaoa import QAOA\nedges = [(0,1),(1,2),(2,0)]\nqaoa = QAOA(3, edges, p=1, max_iterations=40)\nout = qaoa.solve(verbose=False)\nprint(f'QAOA p=1 energy={out[\"energy\"]:.6f} exact={out[\"exact\"]:.6f}')"},
+    {"type": "quiz", "question": "QAOA parameter p controls?", "options": ["Shots", "Circuit layers", "Qubits", "Error rate"], "correct": 1}
+  ]
+}

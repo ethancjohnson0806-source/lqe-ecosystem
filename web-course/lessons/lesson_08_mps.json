@@ -1,0 +1,10 @@
+{
+  "id": "lesson_08",
+  "title": "Tensor Networks (MPS)",
+  "duration_minutes": 12,
+  "sections": [
+    {"type": "text", "content": "Matrix Product States represent many-body states with controllable bond dimension. They compress states that obey area-law entanglement."},
+    {"type": "code", "description": "GHZ via MPS vs statevector", "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.tensor_networks.mps_simulator import mps_ghz_state\nfrom legitimate_quantum_engine.core.statevector import StatevectorSim\nimport numpy as np\nn=4\nmps = mps_ghz_state(n)\nsim = StatevectorSim(n)\nsim.apply('H', 0)\nfor q in range(n-1): sim.apply('CNOT', q, q+1)\nnz = np.where(np.abs(sim.state)>0.1)[0]\nprint(f'MPS type: {type(mps).__name__}')\nprint(f'Exact GHZ nonzero indices: {nz}')"},
+    {"type": "quiz", "question": "MPS efficiency relies on?", "options": ["Volume-law entanglement", "Area-law entanglement", "Infinite temperature", "Random circuits"], "correct": 1}
+  ]
+}

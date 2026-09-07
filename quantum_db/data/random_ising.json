@@ -1,0 +1,27 @@
+{
+  "id": "random_ising",
+  "name": "Random Ising (6 qubits)",
+  "description": "6-qubit random-coupling Ising, seed=42",
+  "type": "spin",
+  "n_qubits": 6,
+  "parameters": {"seed": 42},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": -0.7, "pauli": "ZZIIII"},
+      {"coefficient": 0.3, "pauli": "IZZIII"},
+      {"coefficient": -0.5, "pauli": "IIZZII"},
+      {"coefficient": 0.9, "pauli": "IIIZZI"},
+      {"coefficient": -0.2, "pauli": "IIIIZZ"},
+      {"coefficient": -0.8, "pauli": "XIIIXX"},
+      {"coefficient": -0.4, "pauli": "IXIIII"},
+      {"coefficient": -0.6, "pauli": "IIXIII"},
+      {"coefficient": -0.3, "pauli": "IIIXII"},
+      {"coefficient": -0.5, "pauli": "IIIIXI"},
+      {"coefficient": -0.7, "pauli": "IIIIIX"}
+    ]
+  },
+  "exact": {"ground_state_energy": -4.67101443799309, "degeneracy": 1},
+  "metadata": {"source": "random", "verified_by": "exact_diagonalization", "date_added": "2026-09-06"},
+  "tags": ["random", "ising", "spin", "benchmark"]
+}

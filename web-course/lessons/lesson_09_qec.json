@@ -1,0 +1,10 @@
+{
+  "id": "lesson_09",
+  "title": "Quantum Error Correction",
+  "duration_minutes": 15,
+  "sections": [
+    {"type": "text", "content": "Surface codes encode one logical qubit into many physical qubits so local errors can be detected via stabilizers and corrected. Distance sets how many errors can be fixed."},
+    {"type": "code", "description": "Distance-3 surface code inject and correct", "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.quantum_error_correction.surface_code import SurfaceCode\nsc = SurfaceCode(distance=3)\nsc.encode_logical_zero()\nsc.inject_error('X', 0)\nprint('Syndrome:', sc.measure_syndrome())\nsc.decode_mwpm(); sc.correct()\nprint('Logical:', sc.measure_logical())"},
+    {"type": "quiz", "question": "Distance-3 codes correct how many errors?", "options": ["0", "1", "2", "3"], "correct": 1}
+  ]
+}
