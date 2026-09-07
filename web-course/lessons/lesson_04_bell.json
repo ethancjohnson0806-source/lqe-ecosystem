@@ -1,0 +1,22 @@
+{
+  "id": "lesson_04",
+  "title": "Bell Inequality (CHSH)",
+  "duration_minutes": 15,
+  "sections": [
+    {
+      "type": "text",
+      "content": "The CHSH inequality bounds classical correlations by 2. Quantum mechanics can reach 2*sqrt(2) \u2248 2.828 \u2014 experimental proof that nature is not locally realistic in the classical sense."
+    },
+    {
+      "type": "code",
+      "description": "Estimate CHSH S on a Bell state",
+      "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.core.statevector import StatevectorSim\nimport numpy as np\n\ndef corr(ta, tb):\n    s = StatevectorSim(2)\n    s.apply('H', 0); s.apply('CNOT', 0, 1)\n    s.apply('RY', ta, 0); s.apply('RY', tb, 1)\n    p = s.probabilities()\n    return float(p[0]+p[3]-p[1]-p[2])\n\na, ap, b, bp = 0.0, np.pi/2, np.pi/4, 3*np.pi/4\nS = corr(a,b) - corr(a,bp) + corr(ap,b) + corr(ap,bp)\nprint(f'S = {S:.4f}  (classical bound 2, quantum 2.828)')"
+    },
+    {
+      "type": "quiz",
+      "question": "Classical CHSH bound is?",
+      "options": ["1", "2", "2.828", "4"],
+      "correct": 1
+    }
+  ]
+}

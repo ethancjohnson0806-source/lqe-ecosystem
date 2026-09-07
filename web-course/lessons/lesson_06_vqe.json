@@ -1,0 +1,22 @@
+{
+  "id": "lesson_06",
+  "title": "Variational Quantum Eigensolver",
+  "duration_minutes": 15,
+  "sections": [
+    {
+      "type": "text",
+      "content": "VQE finds ground-state energies by preparing a parameterized trial state and optimizing parameters classically. It is the workhorse hybrid algorithm for near-term chemistry."
+    },
+    {
+      "type": "code",
+      "description": "VQE on 4-qubit TFI",
+      "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.solvers.vqe_ground import VQE, tfi_hamiltonian\nimport numpy as np\nH = tfi_hamiltonian(4, J=1.0, h=0.5)\nexact = float(np.min(np.linalg.eigvalsh(H)))\nvqe = VQE(4, H, num_layers=2, max_iterations=60)\nout = vqe.solve(verbose=False)\nprint(f'Exact: {exact:.6f}')\nprint(f'VQE:   {out[\"energy\"]:.6f}  status={out[\"status\"]}')"
+    },
+    {
+      "type": "quiz",
+      "question": "VQE optimizes which quantity?",
+      "options": ["Circuit depth", "Energy expectation", "Shot count", "Qubit count"],
+      "correct": 1
+    }
+  ]
+}

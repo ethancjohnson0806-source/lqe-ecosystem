@@ -1,0 +1,22 @@
+{
+  "id": "lesson_05",
+  "title": "Grover Search",
+  "duration_minutes": 12,
+  "sections": [
+    {
+      "type": "text",
+      "content": "Grover finds a marked item in an unstructured database of size N in about sqrt(N) steps \u2014 a quadratic speedup. Oracle flips the marked phase; diffusion amplifies the amplitude."
+    },
+    {
+      "type": "code",
+      "description": "2-qubit Grover, one iteration",
+      "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.core.statevector import StatevectorSim\nimport numpy as np\nsim = StatevectorSim(2)\nsim.apply('H', 0); sim.apply('H', 1)\nst = sim.state.copy(); st[3] *= -1; sim.state = st\nsim.apply('H', 0); sim.apply('H', 1)\nst = sim.state.copy(); mean = np.mean(st); sim.state = 2*mean - st\nsim.apply('H', 0); sim.apply('H', 1)\nprint('Probs after 1 Grover iter:', np.round(sim.probabilities(), 4))"
+    },
+    {
+      "type": "quiz",
+      "question": "Grover's speedup vs classical is?",
+      "options": ["Exponential", "Quadratic", "Linear", "None"],
+      "correct": 1
+    }
+  ]
+}
