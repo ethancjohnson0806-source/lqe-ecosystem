@@ -1,6 +1,6 @@
 [project]
 name = "lqe-ecosystem"
-version = "0.1.0"
+version = "1.0.0"
 description = "LQE Ecosystem — standardized quantum education access and prototyping"
 readme = "README.md"
 requires-python = ">=3.10"
