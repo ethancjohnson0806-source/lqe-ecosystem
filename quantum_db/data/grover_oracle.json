@@ -1,0 +1,38 @@
+{
+  "id": "grover_oracle",
+  "name": "Grover Oracle (3 bits)",
+  "description": "3-bit Grover oracle Hamiltonian marking |111>",
+  "type": "oracle",
+  "n_qubits": 3,
+  "parameters": {
+    "marked_state": "111"
+  },
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {
+        "coefficient": 1.0,
+        "pauli": "III"
+      },
+      {
+        "coefficient": -2.0,
+        "pauli": "ZZZ"
+      }
+    ]
+  },
+  "exact": {
+    "ground_state_energy": -1.0,
+    "degeneracy": 1
+  },
+  "metadata": {
+    "source": "oracle",
+    "verified_by": "exact_diagonalization",
+    "date_added": "2026-09-06"
+  },
+  "tags": [
+    "grover",
+    "oracle",
+    "search",
+    "benchmark"
+  ]
+}
