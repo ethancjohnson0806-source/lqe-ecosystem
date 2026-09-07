@@ -1,0 +1,31 @@
+[project]
+name = "lqe-ecosystem"
+version = "0.1.0"
+description = "LQE Ecosystem — standardized quantum education access and prototyping"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "LQE Ecosystem" }]
+dependencies = [
+  "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+web = [
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+]
+benchmarks = [
+  "psutil>=5.9",
+]
+
+[project.scripts]
+lqe-benchmarks = "cross_benchmarks.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["shared*", "cross_benchmarks*", "quantum_db*"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
