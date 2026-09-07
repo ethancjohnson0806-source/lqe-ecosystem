@@ -1,0 +1,22 @@
+{
+  "id": "lesson_01",
+  "title": "What Is A Qubit?",
+  "duration_minutes": 10,
+  "sections": [
+    {
+      "type": "text",
+      "content": "A classical bit is either 0 or 1. A qubit is a two-level quantum system that can be in a superposition of both. We represent its state as a normalized complex vector of length 2."
+    },
+    {
+      "type": "code",
+      "description": "Create a single qubit, apply X and H",
+      "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.core.statevector import StatevectorSim\nsim = StatevectorSim(1)\nprint('Initial |0>:', sim.state)\nsim.apply('X', 0)\nprint('After X |1>:', sim.state)\nsim = StatevectorSim(1)\nsim.apply('H', 0)\nprint('After H |+>:', sim.state)"
+    },
+    {
+      "type": "quiz",
+      "question": "What is the state after applying H to |0>?",
+      "options": ["|0>", "|1>", "|+>", "|->"],
+      "correct": 2
+    }
+  ]
+}

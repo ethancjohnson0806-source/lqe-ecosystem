@@ -1,0 +1,22 @@
+{
+  "id": "lesson_03",
+  "title": "Entanglement",
+  "duration_minutes": 12,
+  "sections": [
+    {
+      "type": "text",
+      "content": "Entangled qubits cannot be written as a product of individual states. The Bell state |Phi+> = (|00>+|11>)/sqrt(2) is the simplest example."
+    },
+    {
+      "type": "code",
+      "description": "Build a Bell state",
+      "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.core.statevector import StatevectorSim\nimport numpy as np\nsim = StatevectorSim(2)\nsim.apply('H', 0)\nsim.apply('CNOT', 0, 1)\nprint('Bell state:', np.round(sim.state, 4))\nprint('Probs:', np.round(sim.probabilities(), 4))"
+    },
+    {
+      "type": "quiz",
+      "question": "Which gate creates entanglement from |+0>?",
+      "options": ["H", "X", "CNOT", "Z"],
+      "correct": 2
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "lesson_02",
+  "title": "Superposition",
+  "duration_minutes": 10,
+  "sections": [
+    {
+      "type": "text",
+      "content": "Superposition lets a qubit hold many basis states at once. Interference is what makes quantum algorithms powerful: amplitudes can cancel or reinforce. H twice returns to the original state (H^2 = I)."
+    },
+    {
+      "type": "code",
+      "description": "Show H twice returns to |0>",
+      "code": "import os, sys\n_LQE = os.environ.get(\"LQE_PATH\", os.path.abspath(os.path.join(\"..\", \"legitimate_quantum_engine_v5.0\")))\n_ECO = os.environ.get(\"LQE_ECOSYSTEM_PATH\", os.path.abspath(\"..\"))\nfor _p in (_LQE, _ECO):\n    if _p not in sys.path:\n        sys.path.insert(0, _p)\nfrom legitimate_quantum_engine.core.statevector import StatevectorSim\nimport numpy as np\nsim = StatevectorSim(1)\nsim.apply('H', 0)\nprint('After one H:', np.round(sim.state, 4))\nsim.apply('H', 0)\nprint('After two H:', np.round(sim.state, 4))"
+    },
+    {
+      "type": "quiz",
+      "question": "What is H applied twice to |0>?",
+      "options": ["|+>", "|->", "|0>", "|1>"],
+      "correct": 2
+    }
+  ]
+}
