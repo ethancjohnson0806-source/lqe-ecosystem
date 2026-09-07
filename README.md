@@ -26,77 +26,52 @@ lqe-ecosystem/
 ├── cross_benchmarks/    # LQE/Qiskit/Cirq adapters, runner, report
 ├── notebooks/           # 20 teaching notebooks (numpy + LQE only)
 ├── web-course/          # FastAPI + vanilla JS course
+├── tests/               # Notebook runner smoke test
 ├── pyproject.toml
 └── README.md
 ```
 
-## Prerequisites
-
-- Python 3.10+
-- NumPy
-- Optional: FastAPI + uvicorn (web course only)
-- Optional: Qiskit / Cirq (cross-benchmarks compare only if installed)
-
 ## Setup
 
-Clone this repo **and** the LQE engine repo into the **same parent directory**:
+The ecosystem depends on the [Legitimate Quantum Engine](https://github.com/ethancjohnson0806-source/Legitimate-Quantum-Engine) but does not modify it. Keep both repos in the same parent directory:
 
 ```bash
-parent/
-  legitimate_quantum_engine_v5.0/   # LQE engine
-  lqe-ecosystem/                    # this repo
-```
+# 1. Clone both repos side by side
+git clone https://github.com/ethancjohnson0806-source/Legitimate-Quantum-Engine.git
+git clone https://github.com/ethancjohnson0806-source/lqe-ecosystem.git
 
-Or set an explicit path:
-
-```bash
-export LQE_PATH=/path/to/legitimate_quantum_engine_v5.0
-# optional: export LQE_ECOSYSTEM_PATH=/path/to/lqe-ecosystem
-```
-
-No hardcoded machine paths are required.
-
-## Quick start
-
-```bash
+# 2. The ecosystem auto-detects the engine via relative paths
 cd lqe-ecosystem
 
-# Quantum DB
-python -m quantum_db.validator          # 10 PASS
-python -m quantum_db.cli list
+# 3. Install ecosystem dependencies
+pip install -e .
 
-# Cross-benchmarks (LQE only if Qiskit/Cirq absent)
-python -m cross_benchmarks              # writes results/latest_report.html
+# 4. (Optional) Install web course dependencies
+pip install -e '.[web]'
 
-# Web course
-pip install fastapi uvicorn             # once
-python web-course/backend.py            # http://localhost:8000
+# 5. Verify everything works
+python -m quantum_db.validator        # Should print 10 PASS
+python -m cross_benchmarks            # Should generate results/latest_report.html
+python tests/run_notebooks.py         # Should run all 20 notebooks
+python web-course/backend.py          # Should start on localhost:8000
 ```
 
-## Smoke tests (Build Plan Part 6)
+If your engine checkout lives somewhere else, set the path:
 
-1. **Cross-benchmarks** — `python -m cross_benchmarks`  
-   → LQE runs even without Qiskit/Cirq; produces `results/latest_report.html`
+```bash
+export LQE_PATH=/path/to/your/legitimate_quantum_engine_v5.0
+python -m cross_benchmarks
+```
 
-2. **Quantum DB** — `python -m quantum_db.validator`  
-   → 10 PASS, exit 0; `python -m quantum_db.cli list` → 10 names
-
-3. **Notebooks** — extract code cells and execute  
-   → all 20 notebooks run without error (numpy + LQE)
-
-4. **Web course** — backend on :8000  
-   - `curl localhost:8000/api/lessons` → JSON list  
-   - `POST /api/run` with StatevectorSim snippet → stdout statevector
+Optional: `export LQE_ECOSYSTEM_PATH=/path/to/lqe-ecosystem` if the ecosystem root is non-standard.
 
 ## Honest limitations
 
-| Area | Limitation |
-|------|------------|
-| Cross-benchmarks | Qiskit/Cirq only if installed; stubs otherwise |
-| Quantum DB | 10 seed entries; no contribution UI |
-| Notebooks | No matplotlib — ASCII/text only |
-| Web course | localStorage progress; `/api/run` 5s timeout, soft sandbox |
-| All | Requires LQE engine importable |
+- The engine repo must be importable. The ecosystem does not bundle it.
+- Web course requires FastAPI and Uvicorn (`pip install -e '.[web]'`).
+- Notebooks use text/ASCII output only. No matplotlib required.
+- Benchmark Qiskit/Cirq comparisons only appear if those packages are installed.
+- Web course progress is localStorage only; `/api/run` has a 5s timeout (subprocess, no eval/exec).
 
 ## Critical rules followed
 
@@ -106,6 +81,7 @@ python web-course/backend.py            # http://localhost:8000
 - `/api/run` uses subprocess + timeout (no eval/exec)
 - LQE engine not modified
 - Shared constants used for Hamiltonians (no duplicate hardcoding)
+- No hardcoded machine paths (`LQE_PATH` / side-by-side layout only)
 
 ---
 
