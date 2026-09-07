@@ -1,0 +1,30 @@
+{
+  "id": "tfi_chain_4",
+  "name": "Transverse-Field Ising Chain (4 qubits)",
+  "description": "4-qubit transverse-field Ising chain, J=1, h=0.5, open boundary",
+  "type": "spin",
+  "n_qubits": 4,
+  "parameters": {"J": 1.0, "h": 0.5, "boundary": "open"},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": -1.0, "pauli": "ZZII"},
+      {"coefficient": -1.0, "pauli": "IZZI"},
+      {"coefficient": -1.0, "pauli": "IIZZ"},
+      {"coefficient": -0.5, "pauli": "XIII"},
+      {"coefficient": -0.5, "pauli": "IXII"},
+      {"coefficient": -0.5, "pauli": "IIXI"},
+      {"coefficient": -0.5, "pauli": "IIIX"}
+    ]
+  },
+  "exact": {
+    "ground_state_energy": -3.4270340889080786,
+    "degeneracy": 1
+  },
+  "metadata": {
+    "source": "analytical",
+    "verified_by": "exact_diagonalization",
+    "date_added": "2026-09-06"
+  },
+  "tags": ["ising", "1d", "exact", "benchmark", "vqe"]
+}

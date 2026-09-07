@@ -1,0 +1,30 @@
+{
+  "id": "lih_molecule",
+  "name": "LiH Molecule (minimal, 4 qubits)",
+  "description": "Educational LiH effective Hamiltonian (4 qubits)",
+  "type": "fermionic",
+  "n_qubits": 4,
+  "parameters": {"basis": "sto-3g"},
+  "hamiltonian": {
+    "format": "pauli_sum",
+    "terms": [
+      {"coefficient": -7.5, "pauli": "IIII"},
+      {"coefficient": 0.2, "pauli": "ZIII"},
+      {"coefficient": 0.2, "pauli": "IZII"},
+      {"coefficient": 0.15, "pauli": "IIZI"},
+      {"coefficient": 0.15, "pauli": "IIIZ"},
+      {"coefficient": 0.05, "pauli": "XXII"},
+      {"coefficient": 0.05, "pauli": "YYII"}
+    ]
+  },
+  "exact": {
+    "ground_state_energy": -7.88,
+    "degeneracy": 1
+  },
+  "metadata": {
+    "source": "educational",
+    "verified_by": "exact_diagonalization",
+    "date_added": "2026-09-06"
+  },
+  "tags": ["chemistry", "molecule", "lih", "benchmark"]
+}
