@@ -7,6 +7,8 @@
 
 The LQE Ecosystem turns the engine into a complete learning and reference platform: cross-framework benchmarks to validate results, a curated database of standard quantum problems, 20 hands-on notebooks, and a phone-friendly web course where students write and run real quantum code.
 
+> **Want to try it without installing anything?** [Open LQE Lite in your browser](https://ethancjohnson0806-source.github.io/lqe-lite/). It provides the pure-NumPy lessons in a phone-friendly JupyterLite environment. Use this ecosystem repository for the full local benchmarks, database, notebooks, and web course.
+
 ---
 
 ## What You Get
